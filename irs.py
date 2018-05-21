@@ -41,11 +41,29 @@ class Irs(object):
 
         return device['commands']
 
-    def get_command(self, command):
+    def get_command(self, request):
         self.__find_commands()
-        return self.__commands[command]
+        for command in self.__commands:
+            if command['name'] == request:
+                return command['data']
+        return None
 
     @property
     def irs(self):
         return self.__irs
 
+
+def main():
+    import sys
+    args = sys.argv
+    category = args[1]
+    maker = args[2]
+    model = args[3]
+    command = args[4]
+    irs = Irs(category, maker, model)
+    data = irs.get_command(command)
+    print(data)
+
+
+if __name__ == '__main__':
+    main()
