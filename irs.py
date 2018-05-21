@@ -3,15 +3,15 @@ from __future__ import print_function, unicode_literals
 
 import json
 import os
-from enum import (IntEnum)
+
 
 class Irs(object):
-    __THIS_MODULE_PATH = os.path.dirname(__file__)
+    __THIS_MODULE_PATH = os.path.dirname(os.path.abspath(__file__))
     __DEFAULT_IRS_PATH = __THIS_MODULE_PATH + '/irs.json'
 
     def __init__(self, category, maker, model, irs_path=__DEFAULT_IRS_PATH):
         # type(object, str, str, str, str)
-
+        print(self.__DEFAULT_IRS_PATH)
         self.__irs_path = irs_path
         self.__irs = self.__load_irs(irs_path)
         self.__category = category
